@@ -1,0 +1,6 @@
+@echo off
+cd /d "%~dp0"
+echo Installing required packages for Bluer Girl...
+pip install -r requirements.txt
+echo Launching Bluer Girl...
+start "" pythonw main.py

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.gh_token
+settings.json
+build/
+dist/
+*.temp_noaudio.mp4

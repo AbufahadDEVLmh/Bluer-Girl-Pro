@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "Bluer Girl Pro — تمويه ذكي للستريمرز والأنمي والفيديو",
+  "version": "3.0.0",
+  "description": "حماية البث المباشر وتمويه فوري للأجزاء المكشوفة والفاتنة للبنات في تيك توك، يوتيوب، ريلز، تويتر، والأنمي مع التفريق الدقيق بين الرجل والبنت.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "http://127.0.0.1:17890/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "cors_media_rules",
+        "enabled": true,
+        "path": "cors_rules.json"
+      }
+    ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Bluer Girl Pro — إعدادات التمويه وحماية الستريمر",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["unblock_cors.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "css": ["overlay.css"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
